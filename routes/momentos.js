@@ -10,7 +10,7 @@ var db = mongojs('mongodb://alfa:alfa1963@ds159880.mlab.com:59880/bdviagens', ['
 var multer = require('multer');
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, './public/uploads')
+        cb(null, './uploads')
     },
     filename: function (req, file, cb) {
         cb(null, file.originalname)
@@ -50,7 +50,7 @@ router.get('/momentos/:idViagem/viagem', function(req, res, next) {
     });
 });
 
-router.get('/momentos/:id', function(req, res, next) {
+router.get('/momentos/:id/momento', function(req, res, next) {
     db.momentos.findOne({ _id: mongojs.ObjectId(req.params.id) }, function(err, momento) {
         if (err) { res.send(err); }
         console.log('momento id: ' + JSON.stringify(momento));
